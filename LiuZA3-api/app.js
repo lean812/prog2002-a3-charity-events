@@ -34,6 +34,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// API responses are dynamic. Never let them be cached/revalidated to a 304
+// (a 304 carries no body and can leave the Angular HTTP client with nothing
+// to emit, which hangs the UI on its loading state).
+app.use('/api', (req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+  res.set('Surrogate-Control', 'no-store');
+  next();
+});
+
 // Static front-end / admin pages (used on cPanel; harmless if absent locally)
 const publicDir = path.join(__dirname, 'public');
 app.use('/admin', express.static(path.join(publicDir, 'admin')));
@@ -65,7 +76,25 @@ app.use('/api/events', eventsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/organisations', organisationsRouter);
 
-// 404 handler for unknown routes
+// ---------------------------------------------------------------------------
+// SPA fallbacks for the Angular front-ends (client + admin).
+// The express.static middleware above has already served any real asset
+// (JS/CSS/images/favicon). Any remaining non-API GET is therefore a client-side
+// route (e.g. /search, /event/5, /admin/edit/3), so we return the matching
+// index.html and let the Angular Router render the page. This keeps deep links
+// and the browser's Refresh button working instead of returning the API 404.
+// ---------------------------------------------------------------------------
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(publicDir, 'admin', 'index.html'));
+});
+app.get('*', (req, res, next) => {
+  // Unknown /api paths still get the JSON 404 below; everything else is a
+  // client-side route and should load the client Angular application.
+  if (req.path.startsWith('/api')) return next();
+  res.sendFile(path.join(publicDir, 'index.html'));
+});
+
+// 404 handler for unknown API routes (and any other non-GET request)
 app.use((req, res) => {
   res.status(404).json({
     success: false,

@@ -1,6 +1,8 @@
 # build-cpanel.ps1
 # Builds the cPanel deployment folder and a cpanel-deploy.zip ready to upload
-# to the cPanel File Manager. Does not modify the three original projects.
+# to the cPanel File Manager. The front-ends are the COMPILED Angular v22
+# apps (client at public/, admin at public/admin/) produced by `ng build`.
+# Node/Express/MySQL backend files are copied from LiuZA3-api.
 
 $ErrorActionPreference = "Stop"
 $root = "C:\Users\Administrator\Doubao\chats\2026-10-18\new-chat"
@@ -30,15 +32,23 @@ $replacement = @'
 $cpanelSql = [regex]::Replace($sqlText, $pattern, $replacement)
 Set-Content -Path (Join-Path $out "sql\charityevents_cpanel.sql") -Value $cpanelSql -Encoding UTF8
 
-# --- Front-end (client) at public/ root ---
+# --- Compiled Angular client at public/ root ---
 $pub = Join-Path $out "public"
 New-Item -ItemType Directory -Path $pub | Out-Null
-Copy-Item (Join-Path $root "LiuZA3-clientside\*") $pub -Recurse -Force
+$clientDist = Join-Path $root "LiuZA3-web\dist\client\browser"
+if (-not (Test-Path (Join-Path $clientDist "index.html"))) {
+  throw "Client build not found at $clientDist. Run 'ng build client' first."
+}
+Copy-Item (Join-Path $clientDist "*") $pub -Recurse -Force
 
-# --- Admin site at public/admin/ ---
+# --- Compiled Angular admin at public/admin/ ---
 $adminPub = Join-Path $pub "admin"
 New-Item -ItemType Directory -Path $adminPub | Out-Null
-Copy-Item (Join-Path $root "LiuZA3-adminside\*") $adminPub -Recurse -Force
+$adminDist = Join-Path $root "LiuZA3-web\dist\admin\browser"
+if (-not (Test-Path (Join-Path $adminDist "index.html"))) {
+  throw "Admin build not found at $adminDist. Run 'ng build admin --base-href=/admin/' first."
+}
+Copy-Item (Join-Path $adminDist "*") $adminPub -Recurse -Force
 
 # --- Zip the deployment folder ---
 Compress-Archive -Path (Join-Path $out "*") -DestinationPath $zip -Force
@@ -49,3 +59,5 @@ Write-Output "--- top-level ---"
 Get-ChildItem $out | ForEach-Object { $_.Name }
 Write-Output "--- public ---"
 Get-ChildItem $pub | ForEach-Object { $_.Name }
+Write-Output "--- public/admin ---"
+Get-ChildItem $adminPub | ForEach-Object { $_.Name }
