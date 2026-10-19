@@ -1,0 +1,19 @@
+# Dependencies (never commit)
+node_modules/
+
+# Environment / secrets (keep .env.example)
+.env
+
+# Submission archives
+*.zip
+
+# Local scratch / temporary folders
+_shots/
+_preview/
+_pkg/
+
+# A2 reference copy (A3 repo only contains A3 work)
+a2_src/
+
+# Logs
+*.log
