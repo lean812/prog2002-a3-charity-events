@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Registration | Heart of Liuzhou Foundation</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">&#9829;</span>
+        Heart of Liuzhou
+      </a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="search.html">Search Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- The selected event summary is rendered here from the API -->
+  <div id="event-banner">
+    <div class="loading" style="padding:3rem">
+      <div class="spinner" aria-hidden="true"></div>
+      Loading event details&hellip;
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container register-layout">
+      <!-- Registration form -->
+      <div class="register-panel">
+        <h1 class="section-title">Register for this event</h1>
+        <p class="section-sub">
+          Fill in your contact details and choose how many tickets you want to
+          purchase. Each person may only register once per event.
+        </p>
+
+        <div class="error-banner" id="error-banner" role="alert"></div>
+
+        <form id="registration-form" novalidate>
+          <div class="field">
+            <label for="full_name">Full name *</label>
+            <input type="text" id="full_name" name="full_name" maxlength="120"
+                   placeholder="e.g. Zhang Wei" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Contact email *</label>
+            <input type="email" id="email" name="email" maxlength="120"
+                   placeholder="e.g. zhang.wei@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" maxlength="30"
+                   placeholder="e.g. +86 138 0000 0000 (optional)" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="registration_date">Registration date *</label>
+              <input type="date" id="registration_date" name="registration_date" required />
+            </div>
+
+            <div class="field">
+              <label for="num_tickets">Number of tickets *</label>
+              <select id="num_tickets" name="num_tickets" required>
+                <option value="1">1 ticket</option>
+                <option value="2">2 tickets</option>
+                <option value="3">3 tickets</option>
+                <option value="4">4 tickets</option>
+                <option value="5">5 tickets</option>
+                <option value="6">6 tickets</option>
+                <option value="7">7 tickets</option>
+                <option value="8">8 tickets</option>
+                <option value="9">9 tickets</option>
+                <option value="10">10 tickets</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="order-summary" id="order-summary">
+            <div class="order-row">
+              <span>Ticket price</span>
+              <span id="unit-price">&ndash;</span>
+            </div>
+            <div class="order-row">
+              <span>Tickets</span>
+              <span id="summary-qty">1</span>
+            </div>
+            <div class="order-row total">
+              <span>Total amount</span>
+              <span id="total-amount">&ndash;</span>
+            </div>
+          </div>
+
+          <div class="form-actions form-actions-inline">
+            <button type="submit" class="btn btn-amber" id="submit-btn">
+              Complete registration
+            </button>
+            <a class="btn btn-outline" id="cancel-link" href="search.html">Cancel</a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Live event info / weather column -->
+      <aside class="register-side" id="register-side"></aside>
+    </div>
+  </section>
+
+  <!-- Confirmation view, shown after a successful registration -->
+  <section class="section" id="confirmation" hidden>
+    <div class="container">
+      <div class="confirm-box" id="confirm-box"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Heart of Liuzhou Foundation</h4>
+        <p>Connecting caring people with local causes through community fundraising events.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <p><a href="index.html">Home</a><br /><a href="search.html">Search Events</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>hello@heartofliuzhou.org<br />+86 772 2600 100</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      &copy; 2026 Heart of Liuzhou Foundation. A case-study website for PROG2002.
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

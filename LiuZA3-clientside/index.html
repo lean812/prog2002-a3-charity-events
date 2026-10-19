@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heart of Liuzhou Foundation | Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">&#9829;</span>
+        Heart of Liuzhou
+      </a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="search.html">Search Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / static organisation introduction -->
+  <section class="hero">
+    <div class="container">
+      <h1>Bringing our community together for local causes</h1>
+      <p class="lead">
+        Heart of Liuzhou Foundation organises fun runs, gala dinners, auctions,
+        concerts and community walks across Liuzhou to raise funds and awareness
+        for education, health and community welfare.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-amber" href="#upcoming-events">Browse upcoming events</a>
+        <a class="btn btn-outline" href="search.html">Search events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic upcoming event listing (loaded from the API) -->
+  <section class="section" id="upcoming-events">
+    <div class="container">
+      <h2 class="section-title">Upcoming charity events</h2>
+      <p class="section-sub">
+        These active events are open for registration. Past and suspended
+        events are not shown.
+      </p>
+      <div id="events-container">
+        <div class="loading">
+          <div class="spinner" aria-hidden="true"></div>
+          Loading events&hellip;
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Static mission / about / contact content -->
+  <section class="section band">
+    <div class="container">
+      <h2 class="section-title">Our mission</h2>
+      <p class="section-sub">
+        To connect caring people in Liuzhou with local causes through community
+        events that raise funds and awareness for the people who need them most.
+      </p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>What we do</h3>
+          <p>We host a year-round programme of fundraising events, each tied to
+          a specific local cause such as rural school libraries, children's
+          healthcare, scholarships and support for elderly residents.</p>
+        </div>
+        <div class="info-card">
+          <h3>How your ticket helps</h3>
+          <p>Every ticket registration is a donation. Event pages show the
+          fundraising goal and live progress, so you can see exactly how your
+          support contributes.</p>
+        </div>
+        <div class="info-card">
+          <h3>Contact us</h3>
+          <p>
+            Email: <a href="mailto:hello@heartofliuzhou.org">hello@heartofliuzhou.org</a><br />
+            Phone: +86 772 2600 100<br />
+            Address: No. 8 Wenchang Road, Chengzhong District, Liuzhou
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Heart of Liuzhou Foundation</h4>
+        <p>Connecting caring people with local causes through community fundraising events.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <p><a href="index.html">Home</a><br /><a href="search.html">Search Events</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>hello@heartofliuzhou.org<br />+86 772 2600 100</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      &copy; 2026 Heart of Liuzhou Foundation. A case-study website for PROG2002.
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

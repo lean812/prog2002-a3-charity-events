@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Events | Heart of Liuzhou Foundation</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">&#9829;</span>
+        Heart of Liuzhou
+      </a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="search.html" class="active">Search Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Search charity events</h1>
+      <p class="section-sub">
+        Find active upcoming events using any combination of date, location and
+        category. You can leave fields blank to broaden your search.
+      </p>
+
+      <div class="layout-search">
+        <!-- Filtering form -->
+        <aside class="filters-panel">
+          <h2>Filter events</h2>
+          <form id="search-form" novalidate>
+            <div class="field">
+              <label for="filter-date">Date</label>
+              <input type="date" id="filter-date" name="date" />
+            </div>
+
+            <div class="field">
+              <label for="filter-location">Location</label>
+              <input type="text" id="filter-location" name="location"
+                     placeholder="e.g. Liuzhou, Riverside" />
+            </div>
+
+            <div class="field">
+              <label for="filter-category">Event category</label>
+              <select id="filter-category" name="category_id">
+                <option value="">All categories</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-amber">Search</button>
+              <button type="button" id="clear-filters" class="btn btn-outline">
+                Clear Filters
+              </button>
+            </div>
+          </form>
+        </aside>
+
+        <!-- Results -->
+        <div>
+          <div class="error-banner" id="error-banner" role="alert"></div>
+          <p class="results-count" id="results-count"></p>
+          <div class="events-grid" id="results-container">
+            <div class="loading">
+              <div class="spinner" aria-hidden="true"></div>
+              Loading all upcoming events&hellip;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Heart of Liuzhou Foundation</h4>
+        <p>Connecting caring people with local causes through community fundraising events.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <p><a href="index.html">Home</a><br /><a href="search.html">Search Events</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>hello@heartofliuzhou.org<br />+86 772 2600 100</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      &copy; 2026 Heart of Liuzhou Foundation. A case-study website for PROG2002.
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>
