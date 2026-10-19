@@ -134,7 +134,26 @@ graded version must run against real MySQL.
 
 ## 5. Deploy to SCU cPanel (Part 5 — each student deploys to their own cPanel)
 
-The exact host names/URLs appear inside your cPanel. The general process is:
+### Live deployment (this project — completed)
+
+- **Public site (client):** https://24832504.it.scu.edu.au/
+- **Admin site:** https://24832504.it.scu.edu.au/admin/
+- **API health check:** https://24832504.it.scu.edu.au/api
+- **Events endpoint:** https://24832504.it.scu.edu.au/api/events
+- Application root on the server: `/home/zliu58/charityapp` (startup file `app.js`).
+- Database: `zliu58_charityevents`; DB user: `zliu58_app` (ALL PRIVILEGES).
+- The cPanel **Application Manager** (Phusion Passenger) runs the app. The
+  Express app serves both the API and the two static sites, which live in
+  `public/` (client) and `public/admin/` (admin).
+- `local-run/build-cpanel.ps1` builds the `cpanel-deploy/` folder and a
+  `cpanel-deploy.zip` from the three projects; the ZIP is uploaded and
+  extracted in File Manager. After any change, toggle the app's **Enabled**
+  switch off/on so Passenger restarts and loads the new code.
+- Important Passenger detail: `app.js` calls `app.listen('passenger')` when the
+  `PhusionPassenger` global exists; locally it is `server.js` that calls
+  `app.listen(3000)`.
+
+The general process is:
 
 1. **Create the database**
    - cPanel → **MySQL® Databases**: create a database (e.g. `cpaneluser_charityevents_db`) and a database user, then **add the user to the database with ALL PRIVILEGES**.
