@@ -12,6 +12,10 @@ _shots/
 _preview/
 _pkg/
 
+# cPanel deployment build (constructed from the three projects)
+cpanel-deploy/
+cpanel-deploy.zip
+
 # A2 reference copy (A3 repo only contains A3 work)
 a2_src/
 
